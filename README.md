@@ -85,6 +85,7 @@ Source & Acknowledgements
 * XG Bosst Classifier
 * Naive Bayes Classifier
 
+
 Out of the box four "vanilla" classifiers "Logistic Regression", "Random Forest", "Support Vector Machines", and "XG Boost"  performed from 93% to 95.8% on "recall" metric and from 85.1% to 87% on the "precision" metric on the validation data set.
 
 # * All four models preformed better after tune up 
