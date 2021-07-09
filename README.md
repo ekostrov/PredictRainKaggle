@@ -107,11 +107,11 @@ After tuning hyper parameters for Random Forest classifier we have the following
 * The precision score stays at 86% on validation data.
 * The precision score on test data is 86%.
 
-*HGBoost Classifier*
+*XGBoost Classifier*
 
-After tuning hyper parameters for HGBoost classifier we have the following results:
-* HGBoost classifier went up from 94% to 97.7% on validation data.
-* HGBoost classifier achieves 97.7% on test data that I have not used for training.
+After tuning hyper parameters for XGBoost classifier we have the following results:
+* XGBoost classifier went up from 94% to 97.7% on validation data.
+* XGBoost classifier achieves 97.7% on test data that I have not used for training.
 * The precision score went from 87% to 80.6% on validation data.
 * The precision score on test data is 80.6%.
 
@@ -130,7 +130,7 @@ After tuning hyper parameters for Support Vector Machines classifier we have the
 * #  Baseline models perform really well out of the box.
 * # Tuninng up imporoved the performance.
 ## Comments on the performance after tuning 
-* It seems that the best choice for the model is HGBoost since it has the best balance between recall score at 97.7% on the test data and precision score at 80.6% on the test data. 
+* It seems that the best choice for the model is XGBoost since it has the best balance between recall score at 97.7% on the test data and precision score at 80.6% on the test data. 
 * If one wants to neglect the precision score (labeling a lot of non-rainy days as rainy), then the best choice is Logistic Regression. Even though it is close in performance to Support Vector Machines, it is lighter and easier to retrain.
 
 # Ways to improve the prject
