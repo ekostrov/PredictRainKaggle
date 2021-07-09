@@ -134,9 +134,10 @@ After tuning hyper parameters for Support Vector Machines classifier we have the
 * If one wants to neglect the precision score (labeling a lot of non-rainy days as rainy), then the best choice is Logistic Regression. Even though it is close in performance to Support Vector Machines, it is lighter and easier to retrain.
 
 # Ways to improve the prject
-* It would be good to try data engineering but it is hard without being an expert in the subject matter.
-* Dive deeper into the tuning of the models to improve results after tuning.
+* Optimize the code by creating pipelines. This will make the project better and it would be easier to use and tune up different classifiers.
+* It would be good to try feature engineering but it is hard without being an expert in the subject matter.
+* Dive deeper into the tuning of the models to improve results for the precision score while keeping recall score high.
 
 # Please review my full work in [Jupyter Notebook](JupyterNotebooks/Jupyter.ipynb) or in the [non technical presentation](presentation_non_technical.pdf)
 
-For any additional questions, please contact Yevgeniy (Gene) Kostrov & ekostrov@yahoo.com
+For any additional questions, please contact Yevgeniy (Gene) Kostrov at ekostrov@yahoo.com
