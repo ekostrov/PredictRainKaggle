@@ -13,20 +13,20 @@
 ***
 
 # Overview 
-The purpose of this project is to use weather dataset from Kaggle to predictrainfall for the next day based on the data about today's weather.
+The purpose of this project is to use weather dataset from Kaggle to predict rainfall for the next day based on the data about today's weather.
 
 During the analysis:
-1. I will analyze data.
-2. I will deal with missing values.
-3. I will build few different classifier and train them.
-4. I will select three best classifiers from step 3. and tune them to improve performance.
-5. I will test tuned classifiers on the data that would be put aside and not used in the training/validation purposes.
+1. I analyze data.
+2. I deal with missing values.
+3. I build few different classifiers and train them.
+4. I select three best classifiers from step 3. and tune them to improve performance.
+5. I test tuned classifiers on the data that would be put aside and not used in the training/validation purposes.
 
 # Business Problem
 
-Predicting rainy weather for the next day is a very important task. It plays a role in farming and other kinds of business, including restaraunts, museums, etc.. Good weather forcast plays important role for turist too. Usually whather is predicted by using complicatd deterministic models envolving partial differential equations. I would like to see how well the rain can be predicted by using Machine Learning.
+Predicting rainy weather for the next day is a very important task. It plays a role in farming and other kinds of business, including restaurants, museums, etc.. Good weather forecast plays important role for tourist too. Usually weather is predicted by using complicated deterministic models involving partial differential equations. I would like to see how well the rain can be predicted by using Machine Learning.
 
-
+***
 # Data Description
 The file called ['weatherAUS.csv'](data/weatherAUS.csv) holds the data for this project. Taken from Kaggle: "This dataset contains about 10 years of daily weather observations from many locations across Australia. RainTomorrow is the target variable to predict. It means -- did it rain the next day, Yes or No? This column is Yes if the rain for that day was 1mm or more."
 
@@ -57,7 +57,7 @@ The file called ['weatherAUS.csv'](data/weatherAUS.csv) holds the data for this 
 * **RainTomorrow** - does it rain tomorrow
 
 Source & Acknowledgements
-* Observations were drawn from numerous weather stations. The daily observations are available from []http://www.bom.gov.au/climate/data. 
+* Observations were drawn from numerous weather stations. The daily observations are available from [www.bom.gov](http://www.bom.gov.au/climate/data). 
 
 * An example of latest weather observations in Canberra: http://www.bom.gov.au/climate/dwo/IDCJDW2801.latest.shtml
 
@@ -68,3 +68,48 @@ Source & Acknowledgements
 * Copyright Commonwealth of Australia 2010, Bureau of Meteorology.
 
 
+## Cleaning/Modifying Data:
+* I extracted the month out of the Date column and saved it into the Month column. It seems more reasonable to use the month rather than specific date for rain prediction
+* There were quite a lot of missing data in the numerical columns. I have filled the missing data with average values for the same region and the same month. I saved the data used to fill in the missing data into a separate Data Frame to use it later on to impute the missing values in the Test Data  (Test Data is not used for training/validation purposes).
+* I scaled the data.
+* I Used the same steps for the Test Data except to impute the missing data, I used previously saved data points from imputing process of the train/evaluation data.
+
+***
+# Modeling
+
+ ## I have built the following classifiers to compare the results based on "recall" score as a primary metric and "precision" score as a secondary metric:
+* Logistic Regression Classifier
+* Random Forest Classifier
+* K Nearest Neighbors Classifier
+* Support Vector Machines Classifier
+* XG Bosst Classifier
+* Naive Bayes Classifier
+
+Out of the box four "vanilla" classifiers "Logistic Regression", "Random Forest", "Support Vector Machines", and "XG Boost"  performed from 93% to 95.8% on "recall" metric and from 85.1% to 87% on the "precision" metric on the validation data set.
+
+* ##  I tuned up the four before mentioned classifiers
+
+* ## 
+
+
+***
+# Moving threshold 
+# INSERT PICTURE 
+We can improve precision a bit by moving a threshold 
+
+
+***
+# Conclusions
+## Modeling
+
+* Baseline models perform really well out of the box.
+* Tuninng up didn't imporove the performance in my cases.
+* Few models performed close to each other. 
+
+## Ways to improve the prject
+* It would be good to try data engineering but it is hard without being an expert in the subject matter.
+* Dive deeper into the tuning of the models to improve results after tuning.
+
+# Please review my full work in [Jupyter Notebook](JupyterNotebooks/Jupyter.ipynb) or in the [non technical presentation](presentation.pdf)
+
+For any additional questions, please contact Yevgeniy (Gene) Kostrov & ekostrov@yahoo.com
