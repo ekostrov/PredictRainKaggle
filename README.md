@@ -134,7 +134,7 @@ After tuning hyper parameters for Support Vector Machines classifier we have the
 
 # Ways to improve the prject
 * Optimize the code by creating pipelines. This will make the project better and it would be easier to use and tune up different classifiers.
-* It would be good to try data engineering but it is hard without being an expert in the subject matter.
+* It would be good to try feature engineering but it is hard without being an expert in the subject matter.
 * Dive deeper into the tuning of the models to improve results for the precision score while keeping recall score high.
 
 # Please review my full work in [Jupyter Notebook](JupyterNotebooks/Jupyter.ipynb) or in the [non technical presentation](presentation_non_technical.pdf)
