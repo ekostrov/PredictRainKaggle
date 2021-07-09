@@ -87,29 +87,55 @@ Source & Acknowledgements
 
 Out of the box four "vanilla" classifiers "Logistic Regression", "Random Forest", "Support Vector Machines", and "XG Boost"  performed from 93% to 95.8% on "recall" metric and from 85.1% to 87% on the "precision" metric on the validation data set.
 
-* ##  I tuned up the four before mentioned classifiers
+# * All four models preformed better after tune up 
+## Here is the summary of preformance
+*Logistic Regression Classifier*
 
-* ## 
+After tuning hyper parameters for Logistic Regression classifier we have the following results:
 
+* Logistic Regression classifier went up from 93.6% to 100% on validation data.
+* Logistic Regression classifier achieves 100% on test data that I have not used for training.
+* The precision score went down from 85.5% to 75.7% on validation data.
+* The precision score on test data is 75.9%.
 
+*Random Forest Classifier*
+
+After tuning hyper parameters for Random Forest classifier we have the following results:
+* Random Forest classifier went up from 94.87% to 94.97% on validation data.
+* Random Forest classifier achieves 95% on test data that I have not used for training.
+* The precision score stays at 86% on validation data.
+* The precision score on test data is 86%.
+
+*HGBoost Classifier*
+
+After tuning hyper parameters for HGBoost classifier we have the following results:
+* HGBoost classifier went up from 94% to 97.7% on validation data.
+* HGBoost classifier achieves 97.7% on test data that I have not used for training.
+* The precision score went from 87% to 80.6% on validation data.
+* The precision score on test data is 80.6%.
+
+*Support Vector Machines Classifier*
+
+After tuning hyper parameters for Support Vector Machines classifier we have the following results:
+* Support Vector Machines classifier went up from 95.9% to 100% on validation data.
+* Support Vector Machines classifier achieves 100% on test data that I have not used for training.
+* The precision score went from 85.1% to 75.7% on validation data.
+* The precision score on test data is 75.9%.
 ***
-# Moving threshold 
-# INSERT PICTURE 
-We can improve precision a bit by moving a threshold 
-
-
 ***
 # Conclusions
 ## Modeling
 
-* Baseline models perform really well out of the box.
-* Tuninng up didn't imporove the performance in my cases.
-* Few models performed close to each other. 
+* #  Baseline models perform really well out of the box.
+* # Tuninng up imporoved the performance.
+## Comments on the performance after tuning 
+* It seems that the best choice for the model is HGBoost since it has the best balance between recall score at 97.7% on the test data and precision score at 80.6% on the test data. 
+* If one wants to neglect the precision score (labeling a lot of non-rainy days as rainy), then the best choice is Logistic Regression. Even though it is close in performance to Support Vector Machines, it is lighter and easier to retrain.
 
-## Ways to improve the prject
+# Ways to improve the prject
 * It would be good to try data engineering but it is hard without being an expert in the subject matter.
 * Dive deeper into the tuning of the models to improve results after tuning.
 
-# Please review my full work in [Jupyter Notebook](JupyterNotebooks/Jupyter.ipynb) or in the [non technical presentation](presentation.pdf)
+# Please review my full work in [Jupyter Notebook](JupyterNotebooks/Jupyter.ipynb) or in the [non technical presentation](presentation_non_technical.pdf)
 
 For any additional questions, please contact Yevgeniy (Gene) Kostrov & ekostrov@yahoo.com
