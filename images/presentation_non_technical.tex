@@ -1,0 +1,242 @@
+\documentclass{beamer}
+%\usetheme{Antibes}
+\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usecolortheme{dolphin}
+\usepackage{cancel}
+\usepackage{tikz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{multicol}
+
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem*{claim*}{Claim}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{hyperref}
+\newtheorem{openproblem}[theorem]{Open Problem}
+
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\setbeamertemplate{theorems}[ams style]
+\begin{document}
+	\title[]{\textcolor{black}{\textbf{Predict Rain in Australia.}}}
+	
+	\author[Yevgeniy Kostrov \hspace{1in} ekostrov@yahoo.com]
+	{\textcolor{black}
+	{\textbf{by Y.~Kostrov\inst}}}
+	\date[April 14, 2019]
+
+%
+%	Title Page:
+%	
+
+%	{
+%\usebackgroundtemplate{\includegraphics[height=\paperheight,width=\paperwidth]{london}}
+%\frame{
+%}
+%}
+	\begin{frame}	
+			\maketitle
+	\end{frame}
+\begin{frame}{\contentsname}
+	\begin{multicols}{2}
+		\tableofcontents
+	\end{multicols}
+\end{frame}
+%
+%
+%	
+%
+%
+%}
+\section{Overview}
+\frame{
+\frametitle{Overview }
+\begin{center}
+	\Large
+	The purpose of this project is to use weather data set from Kaggle to predict rainfall for the next day, based on the data about today's weather.
+\end{center}
+}
+\section{Business Problem}
+\frame{
+\frametitle{Business Problem}
+\begin{itemize}
+	\item Predicting rainy weather for the next day is a very important task. It plays a role in farming and other kinds of business, including restaurants, museums, etc.. Good weather forecast plays important role for tourist too.
+	\item   Usually weather is predicted by using complicated deterministic models involving partial differential equations.
+	\item  I would like to see how well the rain can be predicted by using Machine Learning.
+\end{itemize}
+}
+\section{Data}
+\frame{
+\frametitle{Data Used in the Project}
+This data set contains about 10 years of daily weather observations from many locations across Australia. 
+\vskip 0.2in
+RainTomorrow is the target variable to predict. It means -- did it rain the next day, Yes or No? This column is Yes if the rain for that day was 1mm or more.
+}
+\frame{
+\frametitle{Cleaning/Modifying Data}
+\begin{itemize}
+	\item I extracted the month out of the Date column and saved it into the Month column.
+	\item There were quite a lot of missing data in the numerical columns. 
+	\item I have filled the missing data with average values for the same region and the same month.
+	\item  I scaled the data.
+\end{itemize}
+}
+\section{Modeling}
+\frame{
+\frametitle{Modeling: Creating Baseline Models}
+I have built the following classifiers to compare the results based on "recall" score as a primary metric and "precision" score as a secondary metric:
+\vskip 0.1in
+\begin{itemize}
+	\item Logistic Regression Classifier
+	\item Random Forest Classifier
+	\item KNeighbors Classifier
+	\item Support Vector Machines Classifier
+	\item XG Boost Classifier
+	\item Naive Bayes Classifier
+\end{itemize}
+}
+\subsection{Metrics}
+\frame{
+\frametitle{Explanation of  Recall}
+\begin{itemize}
+	\item I used \textbf{recall} as a metric to select the base model and optimize by later on.
+\item Recall is defined as:
+\[\small \text{Recall} = \frac{\text{True Positive}}{\text{True Positive + False Negative}} = \frac{\text{True Positive}}{\text{Total Actual Positive}}\] 
+\end{itemize}
+}
+\frame{
+	\frametitle{Explanation of Recall}
+\begin{itemize}
+	\item Recall calculates how many of the Actual Positives our model captures by marking it as Positive (True Positive). 
+	\item Thus Recall is a better model metric  when there is a high cost associated with False Negative.
+	\item In our case False Negative is predicting "No Rain" when there is a "Rain Tomorrow".
+\end{itemize}
+}
+\frame{
+\frametitle{Explanation of Recall}
+\begin{itemize}
+	\item For instance, in rain prediction. 
+	\item If it rains tomorrow (Actual Positive) is predicted as no rain tomorrow (Predicted Negative), then the person who relies on the prediction will be really upset since being unprepared for bad weather.
+\end{itemize}
+}
+\frame{
+\frametitle{Explanation of  Precision}
+\begin{itemize}
+	\item There is a secondary metric I will be watching, called "precision".
+	\item Precision is defined as:
+	\[\small \text{Precision} = \frac{\text{True Positive}}{\text{True Positive + False Positive}} = \frac{\text{True Positive}}{\text{Total Predicted Positive}}\]
+	\normalsize 
+\end{itemize}
+}
+\frame{
+	\frametitle{Explanation of Precision}
+	\begin{itemize}
+		\item Precision describes how precise/accurate your model is out of those predicted positive, how many of them are actual positive.
+		\vskip 0.2in
+		\item Precision is a good measure when we worry about the costs of False Positive.
+	\end{itemize}
+}
+\frame{
+\frametitle{Explanation of Precision}
+\begin{itemize}
+	\item In our rain prediction, a false positive means "No Rain" tomorrow (actual negative) has been identified as "Rain" tomorrow.
+	\item It is not that bad, since a person will carry an umbrella or rain coat for nothing.
+\end{itemize}
+}
+\section{Baseline Models Performance}
+\frame{
+\frametitle{How Well Baseline Models Performed}
+\begin{itemize}
+	\item Out of the box four out of six "vanilla" classifiers "Logistic Regression", "Random Forest", "Support Vector Machines", and "XG Boost"  performed well.
+	\vskip 0.2in
+	\item They achieve from 93\% to 95.8\%  scores on "recall" metric.
+\end{itemize}
+}
+\section{Tuning Up the Models}
+\frame{
+\frametitle{I tuned up the four before mentioned classifiers trying to improve their recall score.}
+\begin{itemize}
+	\item Tuning up of the following four models 
+\begin{enumerate}
+	\item Logistic Regression
+	\item Random Forest
+	\item Support Vector Machines
+	\item XG Boost
+\end{enumerate}
+gives us the following results:
+\end{itemize}
+}
+\frame{
+\frametitle{Logistic Regression Classifier}
+After tuning hyper parameters for Logistic Regression classifier we have the following results: 
+\begin{itemize}
+	\item Logistic Regression classifier went up from 93.6\% to 100\% on validation data.
+	\item  Logistic Regression classifier achieves 100\% on test data that I have not used for training. 
+	\item The precision score went down from 85.5\% to  75.7\% on validation data.
+	\item The precision score on test data is 75.9\%. 
+\end{itemize}
+}
+\frame{
+	\frametitle{Random Forest Classifier}
+	After tuning hyper parameters for Random Forest classifier we have the following results: 
+	\begin{itemize}
+		\item Random Forest classifier went up from 94.87\% to 94.97\% on validation data.
+		\item Random Forest classifier achieves 95\% on test data that I have not used for training. 
+		\item The precision score stays at  86\% on validation data.
+		\item The precision score on test data is 86\%. 
+	\end{itemize}
+}
+\frame{
+	\frametitle{HGBoost Classifier}
+	After tuning hyper parameters for HGBoost classifier we have the following results: 
+	\begin{itemize}
+		\item HGBoost classifier went up from 94\% to 97.7\% on validation data.
+		\item HGBoost classifier achieves 97.7\% on test data that I have not used for training. 
+		\item The precision score went from 87\% to  80.6\% on validation data.
+		\item The precision score on test data is 80.6\%. 
+	\end{itemize}
+}
+\frame{
+	\frametitle{Support Vector Machines Classifier}
+	After tuning hyper parameters for Support Vector Machines classifier we have the following results: 
+	\begin{itemize}
+		\item Support Vector Machines classifier went up from 95.9\% to 100\% on validation data.
+		\item Support Vector Machines  classifier achieves 100\% on test data that I have not used for training. 
+		\item The precision score went from 85.1\% to  75.7\% on validation data.
+		\item The precision score on test data is 75.9\%. 
+	\end{itemize}
+}
+\section{Conclusions}
+%\subsection{Data Modeling}
+\frame{
+\frametitle{Conclusions}
+\begin{itemize}
+	\item  It seems that the best choice for the model is HGBoost since it has the best balance between recall score at 97.7\% on the test data and precision score at 80.6\% on the test data. 
+	\vskip 0.2in
+	\item If one wants to neglect the precision score (labeling a lot of non-rainy days as rainy), then the best choice is Logistic Regression. Even though it is close in performance to Support Vector Machines, it is lighter and easier to retrain.
+\end{itemize}
+}
+\frame{
+\frametitle{Ways to Improve the Project}
+\begin{itemize}
+	\item I would like to optimize the code.
+	\item Learn more about weather and related data.
+	\item Use more powerful computer for Support Vector Machines training.
+\end{itemize}
+}
+\frame{
+\begin{center}
+	\LARGE
+	THE END \\
+	THANK YOU!
+\end{center}
+}
+\end{document}
