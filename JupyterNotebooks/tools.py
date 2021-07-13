@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import precision_score, recall_score, f1_score, classification_report
-from sklearn.metrics import roc_auc_score, accuracy_score
+from sklearn.metrics import roc_auc_score, accuracy_score, confusion_matrix
 from sklearn.model_selection import GridSearchCV
 def modify_df(df, saved_median):
     pass
@@ -101,7 +101,7 @@ def assessClassifier(clf,allValues):
     dictionary of the form:
     {'name':name,'f1':f1, 'precision':precision,'recall':recall,'roc_auc_score':roc_auc_sc,'accuracy':accuracy}
     """
-    name = str(clf)
+    name = clf.__class__.__name__
     X_train,X_test,y_train,y_test = allValues
     pipe = Pipeline([(name, clf)])
     pipe.fit(X_train,y_train)
