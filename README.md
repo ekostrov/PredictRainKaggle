@@ -105,15 +105,14 @@ Source & Acknowledgements
 
 * ## "Vanilla"  Random Forest and XGBoost models performed just fine achieve overall f1 score about 90.3% and 90.5% respectively but f1 score just on the "rain" category is just 62% and 65% with about 77% and 75% precision respectively.
 * ## Over and Under sampling didn't improve the performance.
-* ## Tuninng up moved the performance on f1 score down a little bit but balanced out  precision  and recall scores.
-
+* ## Tuninng up moved the performance on f1 score moved f1 score down a little bit but balanced out precision  and recall scores.
 
 ***
 # Business Suggestion:
 ***
 ## Based on my analysis, I suggest to use Tuned Up XGBoost model for the predicion of rain tomorrow based on the data about today's wheather.
 ***
-# Ways to improve the prject
+# Ways to improve the project
 * Optimize the code by creating pipelines. This will make the project better and it would be easier to use and tune up different classifiers.
 * It would be good to try feature engineering but it is hard without being an expert in the subject matter.
 * Dive deeper into the tuning of the models to improve results for the f1 score while keeping precision and recall balanced.
