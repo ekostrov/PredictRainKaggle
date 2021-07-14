@@ -94,25 +94,27 @@
 		\includegraphics[width=4in]{../images/pic2.png}
 	\end{center}
 }
+\frame{
+	\frametitle{Rainy and Sunny days by City.}
+	\begin{center}
+		\includegraphics[width=4in]{../images/pic3.png}
+	\end{center}
+}
 \section{Modeling}
 \frame{
-\frametitle{Modeling: Creating Baseline Models}
+\frametitle{Modeling: Creating  Models}
 I have built the following two classifiers 
 \vskip 0.1in
 \begin{itemize}
-	\item Logistic Regression Classifier
 	\item Random Forest Classifier
-	\item KNeighbors Classifier
-	\item Support Vector Machines Classifier
 	\item XG Boost Classifier
-	\item Naive Bayes Classifier
 \end{itemize}
+I used F1 metric to assess the models.
 }
 \subsection{Metrics}
 \frame{
 \frametitle{Explanation of  Recall}
 \begin{itemize}
-	\item I used \textbf{recall} as a metric to select the base model and optimize by later on.
 \item Recall is defined as:
 \[\small \text{Recall} = \frac{\text{True Positive}}{\text{True Positive + False Negative}} = \frac{\text{True Positive}}{\text{Total Actual Positive}}\] 
 \end{itemize}
@@ -135,7 +137,7 @@ I have built the following two classifiers
 \frame{
 \frametitle{Explanation of  Precision}
 \begin{itemize}
-	\item There is a secondary metric I will be watching, called "precision".
+	\item There is another metric we have to watch for, called "precision".
 	\item Precision is defined as:
 	\[\small \text{Precision} = \frac{\text{True Positive}}{\text{True Positive + False Positive}} = \frac{\text{True Positive}}{\text{Total Predicted Positive}}\]
 	\normalsize 
@@ -156,26 +158,44 @@ I have built the following two classifiers
 	\item It is not that bad, since a person will carry an umbrella or rain coat for nothing.
 \end{itemize}
 }
+\frame{
+	\frametitle{Explanation of F1}
+	\begin{itemize}
+		\item 	I use F1 metric in my analysis.
+		\vskip 0.3in
+		\item F1 is a function of Precision and Recall. 
+	\end{itemize}
+}
+\frame{	
+	\frametitle{Explanation of F1}
+	\begin{itemize}
+		\item Looking at Wikipedia, the formula is given as follows:
+		\[
+			F1 = 2 \times \frac{\text{Precision} \times{Recall}}{\text{Precision} + \text{Recall}}
+		\]
+		\vskip 0.2in
+		\item F1 is used when you look for the balance between Precision and Recall and there is imbalance in class distribution.
+	\end{itemize}
+}
 \section{Models' Performance}
 \frame{
-\frametitle{How Well Baseline Models Performed}
+\frametitle{How Well Models Performed}
 \begin{itemize}
-	\item 
+	\item Logistic Regression achieved 89\% on the F1 metric and it is balanced on the precision and recall at 89\%
+	\vskip 0.3in
+	\item XGBoost achieved 88.8\% on the F1 metric and it is, also, balanced on the precision and recall at 89\% and 88\% respectively.
 \end{itemize}
 }
 \section{Conclusions}
 \frame{
-\frametitle{Conclusions}
-\begin{itemize}
-	\item
-\end{itemize}
-}
-\frame{
-\frametitle{Ways to Improve the Project}
-\begin{itemize}
-	\item I would like to optimize the code.
-	\item Learn more about weather and related data.
-\end{itemize}
+\frametitle{Business Suggestion}
+\begin{center}
+	Based on my analysis, 
+	\begin{itemize}
+		\item I suggest to use  XGBoost model for the prediction of rain tomorrow based on the data about today's weather.	
+	\end{itemize}
+\end{center}
+ 
 }
 \frame{
 \begin{center}

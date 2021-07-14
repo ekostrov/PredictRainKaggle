@@ -110,7 +110,7 @@ Source & Acknowledgements
 ***
 # Business Suggestion:
 ***
-## Based on my analysis, I suggest to use Tuned Up XGBoost model for the predicion of rain tomorrow based on the data about today's wheather.
+## Based on my analysis, I suggest to use Tuned Up XGBoost model for the prediction of rain tomorrow based on the data about today's weather.
 ***
 # Ways to improve the project
 * Optimize the code by creating pipelines. This will make the project better and it would be easier to use and tune up different classifiers.
