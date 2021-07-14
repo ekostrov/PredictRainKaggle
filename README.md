@@ -84,7 +84,7 @@ Source & Acknowledgements
 ***
 # Modeling
 
- ## I have built the following two classifiers to compare the results based on the "f1" score as a primary metric and the expection of the confusion matrix as a secondary metric:
+ ## I have built the following two classifiers to compare the results based on the "f1" score as a primary metric and the inspection of the confusion matrix as a secondary metric:
 
 * Random Forest Classifier
 * XG Bosst Classifier
