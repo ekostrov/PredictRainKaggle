@@ -18,13 +18,19 @@ The purpose of this project is to use weather dataset from Kaggle to predict rai
 During the analysis:
 1. I analyze data.
 2. I deal with missing values.
-3. I build few different classifiers and train them.
-4. I select three best classifiers from step 3. and tune them to improve performance.
-5. I test tuned classifiers on the data that would be put aside and not used in the training/validation purposes.
+3. I build two different classifiers and train them.
+4. I use over sampling and undersampling to balance data.
+5. Tune two classifiers to improve performance.
+6. I test tuned classifiers on the data that would be put aside and not used in the training purposes.
 
 # Business Problem
 
-Predicting rainy weather for the next day is a very important task. It plays a role in farming and other kinds of business, including restaurants, museums, etc.. Good weather forecast plays important role for tourist too. Usually weather is predicted by using complicated deterministic models involving partial differential equations. I would like to see how well the rain can be predicted by using Machine Learning.
+* Predicting rainy weather for the next day is a very important task. 
+* It plays a role in farming and other kinds of business, including restaurants, museums, etc.. 
+* Good weather forecast plays important role for tourist too.
+* Usually weather is predicted by using complicated deterministic models involving partial differential equations. 
+* I would like to see how well the rain can be predicted by using Machine Learning.
+* At the end I will recommend the best (based on this research) system to predict rainy days.
 
 ***
 # Data Description
@@ -72,71 +78,45 @@ Source & Acknowledgements
 * I extracted the month out of the Date column and saved it into the Month column. It seems more reasonable to use the month rather than specific date for rain prediction
 * There were quite a lot of missing data in the numerical columns. I have filled the missing data with average values for the same region and the same month. I saved the data used to fill in the missing data into a separate Data Frame to use it later on to impute the missing values in the Test Data  (Test Data is not used for training/validation purposes).
 * I scaled the data.
-* I Used the same steps for the Test Data except to impute the missing data, I used previously saved data points from imputing process of the train/evaluation data.
+* I Used the same steps for the Test Data and Validation Data except to impute the missing data, I used previously saved data points from imputing process of the train/evaluation data.
+* I used over sampling and under sampling to balance data.
 
 ***
 # Modeling
 
- ## I have built the following classifiers to compare the results based on "recall" score as a primary metric and "precision" score as a secondary metric:
-* Logistic Regression Classifier
+ ## I have built the following two classifiers to compare the results based on the "f1" score as a primary metric and the expection of the confusion matrix as a secondary metric:
+
 * Random Forest Classifier
-* K Nearest Neighbors Classifier
-* Support Vector Machines Classifier
 * XG Bosst Classifier
-* Naive Bayes Classifier
 
+> Out of the box four "vanilla" classifiers "Random Forest" and "XG Boost" did fine on the "f1" metric achieving 90.4% and 90.5% respectively, but inspection of the confusion matrix shows that the models are not doing great on the false positives and false negatives (precion is much higher than recall). 
 
-Out of the box four "vanilla" classifiers "Logistic Regression", "Random Forest", "Support Vector Machines", and "XG Boost"  performed from 93% to 95.8% on "recall" metric and from 85.1% to 87% on the "precision" metric on the validation data set.
+## I decided to "balance" the data with Over and Under sampling techniques.
+> The performance has not improved
 
-# * All four models preformed better after tune up 
-## Here is the summary of preformance
-*Logistic Regression Classifier*
-
-After tuning hyper parameters for Logistic Regression classifier we have the following results:
-
-* Logistic Regression classifier went up from 93.6% to 100% on validation data.
-* Logistic Regression classifier achieves 100% on test data that I have not used for training.
-* The precision score went down from 85.5% to 75.7% on validation data.
-* The precision score on test data is 75.9%.
-
-*Random Forest Classifier*
-
-After tuning hyper parameters for Random Forest classifier we have the following results:
-* Random Forest classifier went up from 94.87% to 94.97% on validation data.
-* Random Forest classifier achieves 95% on test data that I have not used for training.
-* The precision score stays at 86% on validation data.
-* The precision score on test data is 86%.
-
-*XGBoost Classifier*
-
-After tuning hyper parameters for XGBoost classifier we have the following results:
-* XGBoost classifier went up from 94% to 97.7% on validation data.
-* XGBoost classifier achieves 97.7% on test data that I have not used for training.
-* The precision score went from 87% to 80.6% on validation data.
-* The precision score on test data is 80.6%.
-
-*Support Vector Machines Classifier*
-
-After tuning hyper parameters for Support Vector Machines classifier we have the following results:
-* Support Vector Machines classifier went up from 95.9% to 100% on validation data.
-* Support Vector Machines classifier achieves 100% on test data that I have not used for training.
-* The precision score went from 85.1% to 75.7% on validation data.
-* The precision score on test data is 75.9%.
-***
+## I tuned up both models to improve the performance.
+* Tuned up models lost a bit of performance on "f1" score, Random Forest has 89% and XGBoost has 88.9% but performed much better on the inspection of the confusion matrix (we have precision equal to recall). 
+* After tuning Random Forest does overfit while XGBoost doesn't.
 ***
 # Conclusions
+***
+
 ## Modeling
 
-* #  Baseline models perform really well out of the box.
-* # Tuninng up imporoved the performance.
-## Comments on the performance after tuning 
-* It seems that the best choice for the model is XGBoost since it has the best balance between recall score at 97.7% on the test data and precision score at 80.6% on the test data. 
-* If one wants to neglect the precision score (labeling a lot of non-rainy days as rainy), then the best choice is Logistic Regression. Even though it is close in performance to Support Vector Machines, it is lighter and easier to retrain.
+* ## "Vanilla"  Random FOrest and XGBoost models performed just fine achieve overall f1 score about 90.3% and 90.5% respectively but f1 score just on the "rain" category is just 62% and 65% with about 77% and 75% precision respectively.
+* ## Over and Under sampling didn't improve the performance.
+* ## Tuninng up moved the performance on f1 score down a little bit but balanced out  precision  and recall scores.
 
+
+***
+# Business Suggestion:
+***
+## Based on my analysis, I suggest to use Tuned Up XGBoost model for the predicion of rain tomorrow based on the data about today's wheather.
+***
 # Ways to improve the prject
 * Optimize the code by creating pipelines. This will make the project better and it would be easier to use and tune up different classifiers.
 * It would be good to try feature engineering but it is hard without being an expert in the subject matter.
-* Dive deeper into the tuning of the models to improve results for the precision score while keeping recall score high.
+* Dive deeper into the tuning of the models to improve results for the f1 score while keeping precision and recall balanced.
 
 # Please review my full work in [Jupyter Notebook](JupyterNotebooks/Jupyter.ipynb) or in the [non technical presentation](presentation_non_technical.pdf)
 

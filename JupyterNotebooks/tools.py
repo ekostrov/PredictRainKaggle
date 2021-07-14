@@ -4,9 +4,20 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import precision_score, recall_score, f1_score, classification_report
 from sklearn.metrics import roc_auc_score, accuracy_score, confusion_matrix
 from sklearn.model_selection import GridSearchCV
-def modify_df(df, saved_median):
-    pass
 
+def convert_number_to_month(number):
+    """
+    Function converts numeric month into word
+    Input: number
+    Output: month as a string
+    """
+    look_up = {'1': 'Jan', '2': 'Feb',
+               '3': 'Mar', '4': 'Apr',
+               '5': 'May', '6': 'Jun',
+               '7': 'Jul', '8': 'Aug',
+               '9': 'Sep', '10': 'Oct',
+               '11': 'Nov', '12': 'Dec'}
+    return look_up[str(number)]
 
 def fill_missing_values(data, saved_median):
     """
