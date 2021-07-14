@@ -103,7 +103,7 @@ Source & Acknowledgements
 
 ## Modeling
 
-* ## "Vanilla"  Random FOrest and XGBoost models performed just fine achieve overall f1 score about 90.3% and 90.5% respectively but f1 score just on the "rain" category is just 62% and 65% with about 77% and 75% precision respectively.
+* ## "Vanilla"  Random Forest and XGBoost models performed just fine achieve overall f1 score about 90.3% and 90.5% respectively but f1 score just on the "rain" category is just 62% and 65% with about 77% and 75% precision respectively.
 * ## Over and Under sampling didn't improve the performance.
 * ## Tuninng up moved the performance on f1 score down a little bit but balanced out  precision  and recall scores.
 
