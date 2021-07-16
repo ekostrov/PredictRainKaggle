@@ -4,6 +4,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import precision_score, recall_score, f1_score, classification_report
 from sklearn.metrics import roc_auc_score, accuracy_score, confusion_matrix
 from sklearn.model_selection import GridSearchCV
+from CustomGreed import CustomPipeline
 
 def convert_number_to_month(number):
     """
@@ -42,6 +43,17 @@ def fill_missing_values(data, saved_median):
                                         & (saved_median.Month == month)][column]
                 data.loc[idx,column] = float(fill_value)
 
+def convert_to_numeric(val):
+    """
+    Function converts string to number
+    Input val = Yes or No
+    returns 0 or 1
+    """
+    if val == "No":
+        return 0
+    else:
+        return 1
+
                 
 def print_results(clf, X_val, y_val):
     """
@@ -56,6 +68,9 @@ def print_results(clf, X_val, y_val):
     4. recall score
     5. f1 score
     """
+    if y_val.dtype == 'object':
+        y_val = y_val.apply(convert_to_numeric)
+
     y_pred = clf.predict(X_val)
     print(confusion_matrix(y_val,y_pred), ": is the confustion matrix\n")
     print(accuracy_score(y_val,y_pred), ": is the accuracy score")
@@ -154,7 +169,7 @@ def assessClassifier_cv(clf,allValues, cv = 5):
     return {'name':name,'f1':f1, 'precision':precision,'recall':recall,'roc_auc_score':roc_auc_sc,'accuracy':accuracy}
 
 
-def testClassifier(clf, param_grid, scoring ,values,cv=5):
+def testClassifier(clf, param_grid, scoring ,values,cv=3):
     """
     function creates GridSearchCV object,
     fits it on values and prints out 
@@ -170,9 +185,8 @@ def testClassifier(clf, param_grid, scoring ,values,cv=5):
     and Testing Data
     '"""
     X_train, X_test, y_train, y_test = values 
-    grid = GridSearchCV(clf, param_grid=param_grid, cv=cv,
-                                    scoring=scoring,
-                            return_train_score=True, verbose=1, n_jobs = -1)
+    grid = CustomPipeline(clf, param_grid=param_grid, cv=2, scoring='accuracy', return_train_score=True, verbose=1, n_jobs=-1 )
+    #grid = GridSearchCV(clf, param_grid=param_grid, cv=cv, scoring=scoring,  return_train_score=True, verbose=1, n_jobs = -1)
     grid.fit(X_train,y_train)
     print("*"*50)
     print("** Results for Training Data **")
