@@ -185,7 +185,7 @@ def testClassifier(clf, param_grid, scoring ,values,cv=3):
     and Testing Data
     '"""
     X_train, X_test, y_train, y_test = values 
-    grid = CustomPipeline(clf, param_grid=param_grid, cv=2, scoring='accuracy', return_train_score=True, verbose=1, n_jobs=-1 )
+    grid = CustomPipeline(clf, param_grid=param_grid, cv=cv, scoring='accuracy', return_train_score=True, verbose=1, n_jobs=-1 )
     #grid = GridSearchCV(clf, param_grid=param_grid, cv=cv, scoring=scoring,  return_train_score=True, verbose=1, n_jobs = -1)
     grid.fit(X_train,y_train)
     print("*"*50)
